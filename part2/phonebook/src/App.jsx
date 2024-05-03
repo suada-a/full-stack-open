@@ -29,13 +29,23 @@ const App = () => {
     } else {
 
       personService
-      .create(personObject)
-      .then(returnedPerson => {
-        setPersons(persons.concat(returnedPerson))
-        setNewName('')
-        setNewNumber('')
+        .create(personObject)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          setNewName('')
+          setNewNumber('')
       })
     }
+  }
+
+  const removePerson = (person) => {
+    if (window.confirm(`Delete ${person.name}?`)) {
+      personService
+        .remove(person.id)
+        .then(() => {
+          setPersons(persons.filter(p => p.id !== person.id))
+        })
+      }
   }
 
   const handleNameChange = (event) => {
@@ -70,7 +80,10 @@ const App = () => {
       />
       <h3>Numbers</h3>
       <div>
-        <Persons persons={peopleToShow} />
+        <Persons 
+          persons={peopleToShow} 
+          removePerson={removePerson}
+        />
       </div>
     </div>
   )
