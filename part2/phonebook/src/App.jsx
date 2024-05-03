@@ -23,11 +23,12 @@ const App = () => {
       name: newName,
       number: newNumber,
     }
-      
-    if (persons.some(person => person.name === newName)) {
-      alert(`${newName} is already added to phonebook`)
+    
+    const person = persons.find(p => p.name === newName)
+    
+    if (person) {
+      updatePerson(person)
     } else {
-
       personService
         .create(personObject)
         .then(returnedPerson => {
@@ -38,8 +39,31 @@ const App = () => {
     }
   }
 
+  const updatePerson = (person) => {
+    const confirmUpdate = window.confirm(`${newName} is already addred to the phonebook, replace the old number with a new one?`)
+    
+    if (confirmUpdate) {
+      personService
+        .update(person.id, {...person, number: newNumber})
+        .then(updatedPerson => {
+          setPersons(persons.map(p => p.id !== person.id ? p : updatedPerson))
+        })
+        .catch(error => {
+          alert(
+            `${newName} was already deleted from the server`
+          )
+          setPersons(persons.filter(p => p.id !== person.id))
+        })
+
+        setNewName('')
+        setNewNumber('') 
+    }
+  }
+
   const removePerson = (person) => {
-    if (window.confirm(`Delete ${person.name}?`)) {
+    const confirmRemoval = window.confirm(`Delete ${person.name}?`)
+
+    if (confirmRemoval) {
       personService
         .remove(person.id)
         .then(() => {
