@@ -141,6 +141,10 @@ const App = () => {
           persons={peopleToShow} 
           removePerson={removePerson}
         />
+        <Persons 
+          persons={peopleToShow} 
+          removePerson={removePerson}
+        />
       </div>
     </div>
   )
