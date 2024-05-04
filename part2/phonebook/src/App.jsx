@@ -50,18 +50,26 @@ const App = () => {
   }
 
   const updatePerson = (person) => {
-    const confirmUpdate = window.confirm(`${newName} is already addred to the phonebook, replace the old number with a new one?`)
+    const confirmUpdate = window.confirm(`${newName} is already added to the phonebook, replace the old number with a new one?`)
     
     if (confirmUpdate) {
       personService
         .update(person.id, {...person, number: newNumber})
         .then(updatedPerson => {
           setPersons(persons.map(p => p.id !== person.id ? p : updatedPerson))
+          setInfo({ 
+            message: `Updated ${newName}'s phone number`,
+            type: 'success'
+          })
+          setTimeout(() => {
+            setInfo({ message: null })
+          }, 5000)
         })
         .catch(error => {
-          alert(
-            `${newName} was already deleted from the server`
-          )
+          setInfo({message: `Information of ${newName} has already been removed from the server`, type: 'error'})
+          setTimeout(() => {
+            setInfo({ message: null })
+          }, 5000)
           setPersons(persons.filter(p => p.id !== person.id))
         })
 
@@ -77,6 +85,20 @@ const App = () => {
       personService
         .remove(person.id)
         .then(() => {
+          setPersons(persons.filter(p => p.id !== person.id))
+          setInfo({ 
+            message: `Deleted ${person.name} from phonebook`,
+            type: 'success'
+          })
+          setTimeout(() => {
+            setInfo({ message: null })
+          }, 5000)
+        })
+        .catch(error => {
+          setInfo({message: `Information of ${person.name} has already been removed from the server`, type: 'error'})
+          setTimeout(() => {
+            setInfo({ message: null })
+          }, 5000)
           setPersons(persons.filter(p => p.id !== person.id))
         })
       }
