@@ -3,8 +3,8 @@ import axios from 'axios'
 import Countries from './components/Countries'
 
 const App = () => {
+  const [search, setSearch] = useState('')
   const [countries, setCountries] = useState([])
-  const [filter, setFilter] = useState('')
 
   useEffect(() => {
     axios
@@ -12,18 +12,14 @@ const App = () => {
       .then(response => {setCountries(response.data)})
   }, [])
 
-  const handleFilterChange = (event) => {
-    setFilter(event.target.value)
-  }
- 
-  const countriesToShow = countries.filter((country) => country.name.common.toLowerCase().includes(filter))
+  const countriesToShow = countries.filter((country) => country.name.common.toLowerCase().includes(search.toLowerCase()))
 
   return (
     <div>
       <p>
-        find countries<input value={filter} onChange={handleFilterChange}/>
+        find countries <input value={search} onChange={({ target }) => setSearch(target.value)} />
       </p>
-      <Countries countries={countriesToShow} filter={filter} />
+      <Countries countries={countriesToShow} showCountry={setSearch} />
     </div>
   )
 }
