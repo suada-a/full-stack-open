@@ -1,0 +1,39 @@
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Karen Smith",
+  "number": "98-32-604573"
+}
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Gregory Chan"
+}
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "number": "45-99-632007"
+}
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Gregory Chan",
+  "number": "45-99-632007"
+}
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Gregory Chan",
+  "number": "45-99-632007"
+}
+
