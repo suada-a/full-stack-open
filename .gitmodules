@@ -1,0 +1,12 @@
+[submodule "part1"]
+	path = part1
+	url = https://suada-a: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@github.com/suada-a/part1.git
+[submodule "part2"]
+	path = part2
+	url = https://suada-a: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@github.com/suada-a/part2.git
+[submodule "part3"]
+	path = part3
+	url = https://suada-a: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@github.com/suada-a/part3.git
+[submodule "part4"]
+	path = part4
+	url = https://suada-a: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@github.com/suada-a/part4.git
