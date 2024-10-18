@@ -10,3 +10,6 @@
 [submodule "part4"]
 	path = part4
 	url = https://suada-a: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@github.com/suada-a/part4.git
+[submodule "part5"]
+	path = part5
+	url = https://github.com/suada-a/part5.git
