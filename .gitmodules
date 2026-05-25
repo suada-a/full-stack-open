@@ -13,3 +13,6 @@
 [submodule "part5"]
 	path = part5
 	url = https://github.com/suada-a/part5.git
+[submodule "part6"]
+	path = part6
+	url = https://github.com/suada-a/part6.git
